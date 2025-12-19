@@ -1,0 +1,20 @@
+class Solution {
+    static String postToPre(String s) {
+        Stack<String> st = new Stack<>();
+        
+        for(int i=0; i<s.length(); i++){
+            char ch = s.charAt(i);
+            
+            if(Character.isLetterOrDigit(ch)){
+                st.push(Character.toString(ch));
+            } else{
+                String left = st.pop();
+                String right = st.pop();
+                String exp = Character.toString(ch) + right + left;
+                st.push(exp);
+            }
+        }
+        return st.pop();
+        
+    }
+}
